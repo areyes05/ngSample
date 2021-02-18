@@ -1,0 +1,24 @@
+section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+.example-margin {
+  margin: 10px 10px;
+}
+.rg {
+  display: flex;
+  flex-direction: row;
+  margin: 2rem 1rem;
+}
+.rg-button {
+  margin: 1rem;
+}
+textarea {
+  min-width: 800px;
+  width: 100%;
+}
+mat-card {
+  margin: 1rem;
+}

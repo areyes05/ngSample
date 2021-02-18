@@ -1,0 +1,67 @@
+<mat-card>
+  <h1>Add Service</h1>
+  <form [formGroup]="serviceForm">
+    <mat-form-field appearance="standard">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+
+    <section>
+      <label>Access: </label>
+      <mat-radio-group formControlName="access" class="rg">
+        <mat-radio-button
+          value="public"
+          class="rg-button">Public</mat-radio-button>
+        <mat-radio-button
+          value="restricted"
+          class="rg-button">Restricted</mat-radio-button>
+      </mat-radio-group>
+    </section>
+
+    <div *ngIf="serviceForm.value.access === 'restricted'">
+      <section>
+        <mat-form-field appearance="standard">
+          <mat-label>Users</mat-label>
+          <input matInput formControlName="users">
+        </mat-form-field>
+      </section>
+      <section>
+        <mat-form-field appearance="standard">
+          <mat-label>Anyone with email domain</mat-label>
+          <input matInput formControlName="domains">
+        </mat-form-field>
+      </section>
+    </div>
+    <h3>Data</h3>
+    <section>
+      <label>Access: </label>
+      <mat-radio-group formControlName="dataType" class="rg">
+        <mat-radio-button
+          value="html"
+          class="rg-button">HTML</mat-radio-button>
+        <mat-radio-button
+          value="markdown"
+          class="rg-button">Markdown</mat-radio-button>
+        <mat-radio-button
+          value="upload"
+          class="rg-button">Upload</mat-radio-button>
+      </mat-radio-group>
+    </section>
+    <div *ngIf="serviceForm.value.dataType !== 'upload'">
+      <mat-form-field>
+        <mat-label>{{serviceForm.value.dataType}}</mat-label>
+        <textarea
+          matInput
+          class="textarea"
+          rows="20"
+          formControlName="dataContent"></textarea>
+      </mat-form-field>
+    </div>
+    <div *ngIf="serviceForm.value.dataType === 'upload'" class="rg">
+      <input type="file" (change)="upload($event)" multiple>
+<!--      <button mat-raised-button color="basic" type="file" (click)="upload()">Upload</button>-->
+    </div>
+
+    <button type="submit" mat-raised-button color="primary">Submit</button>
+  </form>
+</mat-card>
